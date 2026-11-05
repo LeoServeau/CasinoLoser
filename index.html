@@ -587,7 +587,7 @@ const BASE={scratch:.95,blackjack:.95,slot:.95,wheel:23/24,mines:.95,craps:.95,r
 const TUT={
  scratch:'Achète un ticket puis gratte la couche argentée avec la souris ou le doigt. Trois symboles identiques font gagner. Plus le ticket coûte cher, plus le gain est gros. Le bouton ALL-IN mise tout ce que tu as.',
  blackjack:'Approche-toi de 21 sans dépasser. Tirer prend une carte, Rester s’arrête, Doubler double la mise pour une seule carte, Séparer coupe une paire en deux mains. Le croupier tire jusqu’à 17. Un blackjack paie 3:2.',
- slot:'Tire le levier ou appuie sur Lancer. Les rouleaux s’arrêtent seuls, ou un par un si tu relances. Trois symboles identiques sur la ligne rouge font gagner : 💎 ×100, ⭐ ×25, 🔔 ×10, 🍇 ×5, 🍋 ×3, 🍒 ×2. Deux 🍒 au début remboursent la mise. AUTO enchaîne les tours.',
+ slot:'Tire le levier ou appuie sur Lancer. Les rouleaux s’arrêtent seuls, ou un par un si tu relances. Trois symboles identiques sur la ligne rouge font gagner : 💎 ×100, ⭐ ×25, 🔔 ×10, 🍇 ×5, 🍋 ×3, 🍒 ×2. Deux 🍒 n’importe où sur la ligne remboursent la mise. AUTO enchaîne les tours.',
  wheel:'Mise puis lance la roue. Le segment sous la flèche donne ton multiplicateur, jusqu’à ×10. Le 💀 fait tout perdre. L’amélioration Roue décentrée donne une seconde chance sur le 💀.',
  mines:'Choisis le nombre de bombes puis clique sur Jouer. Chaque gemme 💎 trouvée fait monter le multiplicateur. Encaisse quand tu veux. Une bombe 💣 et tu perds la mise. Plus il y a de bombes, plus ça monte vite.',
  craps:'Pass Line : au premier lancer, 7 ou 11 gagne. 2, 3 ou 12 perd. Sinon le total devient le point : relance jusqu’à le refaire (gagné) avant un 7 (perdu). Don’t Pass fait l’inverse, avec le 12 remboursé.',
@@ -595,7 +595,7 @@ const TUT={
  plinko:'Lâche des billes : elles rebondissent sur les clous jusqu’à une case. Les bords paient gros, le centre peu. Le risque Élevé rend les bords énormes et le centre presque nul. Tu peux lâcher plusieurs billes à la fois.',
  crash:'Décolle : le multiplicateur grimpe tant que la fusée vole. Encaisse avant l’explosion pour gagner ta mise × le multiplicateur. Tu peux régler un encaissement automatique.',
  race:'Clique sur la ligne d’un cheval pour le choisir : plus sa cote est haute, moins il a de chances de gagner. Mise puis lance la course : si ton cheval franchit la ligne en premier, ta mise est multipliée par sa cote.',
- hilo:'Une carte est tirée. Devine si la suivante sera plus haute ou plus basse (l’As est la plus forte). Une égalité compte comme gagné. Chaque bonne réponse multiplie ton gain selon ses chances : plus c’est risqué, plus ça paie. Encaisse quand tu veux après une bonne réponse.',
+ hilo:'Une carte est tirée. Devine si la suivante sera plus haute ou plus basse (l’As est la plus forte). Une égalité compte comme gagné. Sur un As ou un 2, le choix « sûr » est toujours gagnant mais ne rapporte rien : il sert juste à changer de carte. Chaque bonne réponse multiplie ton gain selon ses chances : plus c’est risqué, plus ça paie. Encaisse quand tu veux après une bonne réponse.',
  monte:'Mise, puis l’alien mélange ses gobelets. Choisis celui qui cache la gemme 💎 : elle se téléporte pendant le mélange, fie-toi à ton instinct. Parfois l’alien fait une blague et change les règles en route (deuxième gemme, quatrième gobelet, ou règle inversée : trouve un gobelet vide). Le gain affiché s’adapte à chaque blague.',
  core:'Un réacteur à 5 anneaux. Mise, puis clique sur « Injecter de l’énergie » : les anneaux tournent. Stoppe-les un par un, du bas vers le haut, en cliquant sur l’anneau actif (ou Espace) ; sinon l’ordinateur le stoppe tout seul. Chaque anneau sans surchauffe fait grimper le gain. Un ☢️ fait chuter le gain, et deux ☢️ font exploser le réacteur : tu perds ta mise. Entre deux anneaux, « Évacuer / Encaisser » sécurise ton gain. Plus on monte, plus le risque de surchauffe augmente. Le retour moyen est le même quel que soit le moment où tu encaisses.',
  hop:'Choisis le nombre de nénuphars par rangée : plus il y en a, plus c’est sûr (et moins ça paie). À chaque rangée, un nénuphar est fragile : saute sur un autre ! Chaque rangée franchie augmente le multiplicateur. Encaisse quand tu veux, ou va jusqu’à la dernière rangée.',
@@ -907,14 +907,14 @@ const SL={on:false,R:[],b:0,m:0,al:false,tg:[],pid:0,auto:false,raf:0,last:0,tm:
 <div class="slotcab" id="slotcab"><div class="marq">${'<i class="bulb"></i>'.repeat(14)}</div><div class="sl-title">★ TRIPLE LOSER ★</div>
 <div class="sl-row"><div class="reels" id="reels">${[0,1,2].map(i=>`<div class="reel" id="reel${i}"><div class="strip"></div></div>`).join('')}<div class="payline"></div></div>
 <div class="lever" id="lever"><div class="base"></div><div class="rod"></div><button class="ball" id="pull" aria-label="Tirer le levier"></button></div></div>
-<div class="ptab"><span>💎💎💎 ×100</span><span>⭐⭐⭐ ×25</span><span>🔔🔔🔔 ×10</span><span>🍇🍇🍇 ×5</span><span>🍋🍋🍋 ×3</span><span>🍒🍒🍒 ×2</span><span>🍒🍒 remboursé</span></div></div>
+<div class="ptab"><span>💎💎💎 ×100</span><span>⭐⭐⭐ ×25</span><span>🔔🔔🔔 ×10</span><span>🍇🍇🍇 ×5</span><span>🍋🍋🍋 ×3</span><span>🍒🍒🍒 ×2</span><span>2 🍒 remboursé</span></div></div>
 <div class="res" id="res-slot"></div><div class="acts"><button class="btn act" id="sl-go">Lancer</button><button class="btn" id="sl-auto">AUTO</button></div></div>`},
  init(){this.R=[0,1,2].map(i=>{const el=$('#reel'+i),r={el,st:el.querySelector('.strip'),sy:[...Array(SK)].map(()=>rnd(SY)),off:SH*ri(SK),v:0,state:'idle',a:0,b:0,t0:0,T:1,li:-1};this.paintR(r);this.pos(r);return r});
   $('#pull').onclick=()=>this.pull();$('#sl-go').onclick=()=>this.pull();$('#sl-auto').onclick=()=>{this.auto=!this.auto;SFX.click();if(this.auto&&!this.on)this.start()}},
  paintR(r){r.st.innerHTML=[...r.sy,r.sy[0],r.sy[1],r.sy[2]].map(s=>`<span>${s}</span>`).join('')},
  pos(r){r.st.style.transform=`translateY(${-(r.off%(SK*SH))}px)`},
  pick(){const f=rtp('slot')/.88;let r=Math.random(),a=0;for(const t of SLT){a+=t[2]*f;if(r<a)return t}return null},
- targets(h){if(h){if(h[1]==='🍒🍒'){let x;do x=rnd(SY);while(x==='🍒');return['🍒','🍒',x]}return[h[1],h[1],h[1]]}let t;do t=[rnd(SY),rnd(SY),rnd(SY)];while((t[0]===t[1]&&t[1]===t[2])||(t[0]==='🍒'&&t[1]==='🍒'));return t},
+ targets(h){if(h){if(h[1]==='🍒🍒'){let x;do x=rnd(SY);while(x==='🍒');const t=['🍒','🍒','🍒'];t[ri(3)]=x;return t}return[h[1],h[1],h[1]]}let t;do t=[rnd(SY),rnd(SY),rnd(SY)];while((t[0]===t[1]&&t[1]===t[2])||t.filter(c=>c==='🍒').length===2);return t},
  lever(){const l=$('#lever');l.classList.remove('pull');void l.offsetWidth;l.classList.add('pull')},
  pull(){if(!this.on)return this.start();this.lever();const i=this.R.findIndex(r=>r.state==='spin');if(i>=0)this.stop(i)},
  start(){if(this.on)return;const t=stake('slot');if(!t){this.auto=false;return}this.lever();const h=this.pick();this.b=t.b;this.al=t.allin;this.m=h?h[0]:0;this.tg=this.targets(h);this.on=true;
@@ -929,7 +929,7 @@ const SL={on:false,R:[],b:0,m:0,al:false,tg:[],pid:0,auto:false,raf:0,last:0,tm:
   if(act)this.raf=requestAnimationFrame(step)};this.raf=requestAnimationFrame(step)},
  landed(){if(!this.on||this.R.some(r=>r.state!=='idle'))return;this.on=false;unpend(this.pid);const m=this.m;
   if(m>0){$('#reels').classList.add('win');if(m>=5)$('#slotcab').classList.add('win')}
-  settle('slot',this.b,this.b*m,m?(m===1?'🍒🍒 Mise remboursée':(m>=25?'JACKPOT ×':'Gagné ×')+m):'Perdu',{allin:this.al,el:$('#reels'),quiet:this.auto});
+  settle('slot',this.b,this.b*m,m?(m===1?'2 🍒 · Mise remboursée':(m>=25?'JACKPOT ×':'Gagné ×')+m):'Perdu',{allin:this.al,el:$('#reels'),quiet:this.auto});
   if(m===100)achieve('diam');if(this.auto)setTimeout(()=>this.autoNext(),m>=2?950:520)},
  autoNext(){if(!this.auto||this.on)return;if(WIN.on||!$('#dlg').hidden){setTimeout(()=>this.autoNext(),400);return}if(!can('slot')){this.auto=false;return}this.start()},
  busy(){return this.on},lock(){return this.on},key(){this.pull()},
@@ -1190,16 +1190,16 @@ const HI={on:false,b:0,al:false,n:0,k:0,m:1,cards:[],pid:0,
  draw(){const n=2+ri(13);return{n,c:{r:HLL(n),s:rnd(['♠','♥','♦','♣'])}}},
  pH(){return(15-this.n)/13},pL(){return(this.n-1)/13},
  start(){if(this.on)return;const t=stake('hilo');if(!t)return;const d=this.draw();Object.assign(this,{on:true,b:t.b,al:t.allin,n:d.n,k:0,m:1,cards:[d.c]});this.pid=pend('hilo',t.b,t.b);clearRes('hilo');SFX.chip();SFX.card();this.render()},
- guess(hi){if(!this.on)return;const p=hi?this.pH():this.pL();if(p>=1)return;const d=this.draw(),win=hi?d.n>=this.n:d.n<=this.n;this.cards.push(d.c);SFX.card();
+ guess(hi){if(!this.on)return;const p=hi?this.pH():this.pL();if(p<=0)return;const d=this.draw(),win=hi?d.n>=this.n:d.n<=this.n;this.cards.push(d.c);SFX.card();
   if(!win){this.on=false;unpend(this.pid);SFX.thud();this.render();settle('hilo',this.b,0,'Perdu · '+d.c.r+d.c.s+(hi?' n’est pas plus haut':' n’est pas plus bas'),{allin:this.al,el:$('#hl-c')});return}
-  this.m/=p;this.k++;this.n=d.n;SFX.gem(this.k);if(this.k>=5)achieve('hl5');const r=rtp('hilo');pendSet(this.pid,this.b*this.m*r);if(this.m*r>=1000){this.cash();return}this.render()},
+  this.n=d.n;if(p>=1){SFX.card();this.render();return}this.m/=p;this.k++;SFX.gem(this.k);if(this.k>=5)achieve('hl5');const r=rtp('hilo');pendSet(this.pid,this.b*this.m*r);if(this.m*r>=1000){this.cash();return}this.render()},
  cash(){if(!this.on||this.k<1)return;const m=this.m*rtp('hilo');this.on=false;unpend(this.pid);this.render();settle('hilo',this.b,this.b*m,'Encaissé · série de '+this.k+' · ×'+fmtX(m),{allin:this.al,el:$('#hl-c')})},
  render(){const el=$('#hl-c');if(!el)return;const cs=this.cards.slice(-6);if(!cs.length){el.innerHTML='';el.appendChild(BJ.cardEl(null,true))}else{if(el.firstChild&&el.firstChild.dataset.k==='X')el.innerHTML='';BJ.paintHand(el,cs,-1)}
   txt($('#hl-m'),'×'+fmtX(this.on||this.k?this.m*rtp('hilo'):1));txt($('#hl-k'),String(this.k))},
  busy(){return this.on},lock(){return this.on},
- key(){if(!this.on)this.start();else if(this.k)this.cash();else{const a=[];if(this.pH()<1)a.push(1);if(this.pL()<1)a.push(0);this.guess(rnd(a))}},
- upd(){const o=this.on,r=rtp('hilo'),ph=this.pH(),pl=this.pL(),xh=o&&ph<1?this.m/ph*r:0,xl=o&&pl<1?this.m/pl*r:0;
-  dis('hl-go',o||!can('hilo'));dis('hl-hi',!xh);dis('hl-lo',!xl);txt($('#hl-hi'),'⬆ Plus haut'+(xh?' · ×'+fmtX(xh):''));txt($('#hl-lo'),'⬇ Plus bas'+(xl?' · ×'+fmtX(xl):''));
+ key(){if(!this.on)this.start();else if(this.k)this.cash();else this.guess(this.pL()>=1?0:this.pH()>=1?1:ri(2))},
+ upd(){const o=this.on,r=rtp('hilo'),ph=this.pH(),pl=this.pL(),xh=o&&ph>0?this.m/ph*r:0,xl=o&&pl>0?this.m/pl*r:0;
+  dis('hl-go',o||!can('hilo'));dis('hl-hi',!xh);dis('hl-lo',!xl);txt($('#hl-hi'),'⬆ Plus haut'+(xh?(ph>=1?' · sûr':' · ×'+fmtX(xh)):''));txt($('#hl-lo'),'⬇ Plus bas'+(xl?(pl>=1?' · sûr':' · ×'+fmtX(xl)):''));
   const c=$('#hl-cash'),ok=o&&this.k>0;txt(c,ok?'Encaisser '+fmt(this.b*this.m*r)+' €':'Encaisser');c.disabled=!ok;c.classList.toggle('hot',ok)}};
 
 /* ========== Bonneteau ========== */
